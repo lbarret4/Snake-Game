@@ -1,0 +1,28 @@
+{
+  "name": "2dgame",
+  "version": "1.0.0",
+  "description": "",
+  "main": "bundle.js",
+  "dependencies": {
+    "@popperjs/core": "^2.9.3",
+    "bootstrap": "^5.1.0",
+    "browserify": "^17.0.0",
+    "jquery": "^3.6.0",
+    "zimjs": "^11.4.2"
+  },
+  "devDependencies": {
+    "budo": "^11.6.4",
+    "concurrently": "^6.2.1",
+    "exorcist": "^2.0.0",
+    "watchify": "^4.0.0"
+  },
+  "scripts": {
+    "build": "browserify ./src/js/game/game.js -o ./src/build/bundle.js -v ",
+    "build:gameMap": "browserify ./src/js/game/game.js -o -d  | exorcist ./src/build/bundle.map.js > ./src/build/bundle.js  -v ",
+    "dev": " npm run build && concurrently -r -k \"npm run watch\" \"npm run serve:game\" ",
+    "watch": "watchify ./src/js/game/game.js -o ./src/build/bundle.js -v",
+    "serve": "budo ./src/js/game/game.js --dir './src/pages/game.html' --live --open"
+  },
+  "author": "",
+  "license": "ISC"
+}
